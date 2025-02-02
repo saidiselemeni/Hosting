@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404 - Oops!</title>
+    <style>
+        body {
+            background-color: #f7f6f2;
+            font-family: 'Comic Sans MS', sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+        }
+        .heading {
+            font-size: 48px;
+            animation: float 2s ease-in-out infinite;
+        }
+        .heading span {
+            display: inline-block;
+            color: #ff5e57;
+            transform: scale(1.2);
+        }
+        .message {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .animated-img {
+            width: 300px;
+            height: auto;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">Oops! <span>404</span></div>
+        <div class="message">Student matching the given query does not exist!</div>
+        <img src="https://th.bing.com/th/id/R.5957e32c1d43e27e83674fa54c1f6ed5?rik=3mItCEljG%2b72LQ&riu=http%3a%2f%2fclipart-library.com%2fimages%2f8cxrdjEMi.jpg&ehk=9oOnqop2YUzstTNS6k4rdYoGT%2fiav79PM%2fYVnkvGOh0%3d&risl=&pid=ImgRaw&r=0" alt="Funny Cartoon" class="animated-img">
+        <div class="message">Hey! You must be lost. Let's <a href="/" style="text-decoration: none; color: #ff5e57;">go home</a>!</div>
+    </div>
+</body>
+</html>
