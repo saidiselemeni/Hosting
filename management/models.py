@@ -8,10 +8,10 @@ class Genre(models.Model):
 
     def __str__(self):
         return self.name
-##  __str__ method is used to override default string returnd by an object
 
 
-##relation containing language of books
+
+
 class Language(models.Model):
     name = models.CharField(max_length=200,
                             help_text="Enter the book's natural language (e.g. English, French, Japanese etc.)")
@@ -19,25 +19,21 @@ class Language(models.Model):
     def __str__(self):
         return self.name
 
-#book relation that has 2 foreign key author language
-#book relation can contain multiple genre so we have used manytomanyfield
 class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=100)
     summary = models.TextField(max_length=1000, help_text="Enter a brief description of the book")
     isbn = models.CharField('ISBN', max_length=13,
                             help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
-    # genre = models.TextField(default='any', help_text="Select a genre for this book")
+    # genre = models.TextField( help_text="Select a genre for this book")
     language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
     total_copies = models.IntegerField()
     available_copies = models.IntegerField()
     pic=models.ImageField(blank=True, null=True, upload_to='book_image')
 
-#return canonical url for an object
     def get_absolute_url(self):
         return reverse('book-detail', args=[str(self.id)])
 
-    ##  __str__ method is used to override default string returnd by an object
     def __str__(self):
         return self.title
 
@@ -47,11 +43,6 @@ def create_user(sender, *args, **kwargs):
         user = User.objects.create(username=kwargs['instance'],password="dummypass")
 
 
-
-
-
-#relation containing info about students
-#roll_no is used for identifing students uniquely
 class Student(models.Model):
     roll_no = models.CharField(max_length=10,unique=True)
     name = models.CharField(max_length=10)
@@ -65,10 +56,7 @@ class Student(models.Model):
 
 
 post_save.connect(create_user, sender=Student)
-#relation containing info about Borrowed books
-#it has  foriegn key book and student for refrencing book nad student
-#roll_no is used for identifing students
-#if a book is returned than corresponding tuple is deleted from database
+
 class Borrower(models.Model):
     student = models.ForeignKey('Student', on_delete=models.CASCADE)
     book = models.ForeignKey('Book', on_delete=models.CASCADE)
